@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation
+ } from "react-router-dom";
+// import NavBar from "./components/NavBar"
+import Footer from "./components/Footer";
+// import Home from "./pages/Home";
+import TrainCarousel from "./components/TrainCarousel"
+import ContactPage from "./pages/ContactPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+const RouteContentManager = () => {
+   const location = useLocation();
+   const navigate = useNavigate();
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+   return(
+    <div>
+      {location.pathname === "/" && (
+       <>
+       {/* <Home/> */}
+       <TrainCarousel/>
+       </>
+      )}
+      <Routes>
+        <Route path="/" element="null"/>
+        {/* <Route path="/booking" element={<BookingPage/>}/> */}
+        <Route path="/contact" element={<ContactPage/>}/>
+        {/* <Route 
+        path="/login"
+        element={
+          <LoginModal
+          isOpen={true}
+          onClose={()=> window.history.back()}
+          onLogin={()=> {}}
+        switchToRegister={()=> {}}
+        /> 
+        }
+        /> */}
+      </Routes>
+    </div>
+   )
 }
 
-export default App
+function App() {
+  // const [count, setCount] = useState(0);
+
+  return (
+    <Router>
+      <div>
+        {/* <NavBar /> */}
+        <RouteContentManager />
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
