@@ -4,9 +4,9 @@ import { BrowserRouter as Router,
   useNavigate,
   useLocation
  } from "react-router-dom";
-// import NavBar from "./components/NavBar"
+import NavBar from "./components/NavBar"
 import Footer from "./components/Footer";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import TrainCarousel from "./components/TrainCarousel"
 import ContactPage from "./pages/ContactPage";
 
@@ -18,7 +18,7 @@ const RouteContentManager = () => {
     <div>
       {location.pathname === "/" && (
        <>
-       {/* <Home/> */}
+       <Home/>
        <TrainCarousel/>
        </>
       )}
@@ -48,7 +48,7 @@ function App() {
   return (
     <Router>
       <div>
-        {/* <NavBar /> */}
+        <NavBar />
         <RouteContentManager />
         <Footer />
       </div>
